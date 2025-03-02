@@ -1,0 +1,61 @@
+# Node.js & NestJS
+node_modules/
+dist/
+*.log
+.env
+.env.local
+*.tsbuildinfo
+.nest-cli.json
+.vscode/
+.idea/
+tmp/
+logs/
+.cache/
+
+# Docker
+docker-compose.override.yml
+*.env
+*.pid
+Dockerfile
+docker-compose.yml
+
+# Kubernetes
+k8s/*.yaml
+!k8s/README.md
+
+# GitHub Actions
+.github/workflows/*.secrets
+.github/workflows/*.key
+
+# TypeScript
+*.tsbuildinfo
+
+# VS Code
+.vscode/
+.history/
+
+# MacOS
+.DS_Store
+
+# Linux
+*.swp
+
+# NPM
+package-lock.json
+yarn.lock
+
+# Redis & MySQL
+*.rdb
+*.sql
+*.sqlite
+dump.rdb
+
+# Ignore local build and deployment artifacts
+coverage/
+*.tgz
+.npm/
+
+# Misc
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
