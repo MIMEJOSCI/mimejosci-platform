@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  dev_environment:
+    build: .
+    container_name: dev_environment
+    volumes:
+      - ../:/workspace
+    working_dir: /workspace
+    ports:
+      - "3000:3000"
+      - "4200:4200"
+      - "8080:8080"
+    tty: true
