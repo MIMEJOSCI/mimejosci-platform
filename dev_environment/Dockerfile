@@ -3,6 +3,7 @@ FROM ubuntu:24.04
 
 # Set up environment variables
 ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=UTC
 
 # Install essential tools and dependencies
 RUN apt-get update && \
@@ -22,22 +23,42 @@ RUN apt-get update && \
     unzip \
     zip \
     ssh \
+    bash-completion \
+    apt-utils \
+    python3 \
+    python3-pip \
+    python3-venv \
+    libpq-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Node.js (LTS) and npm
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
     apt-get install -y nodejs
 
-# Install Docker CLI
-RUN apt-get update && \
-    apt-get install -y docker.io
+# Install Docker (to run Docker inside Docker)
+RUN curl -fsSL https://get.docker.com | bash
 
 # Install Docker Compose
 RUN curl -L "https://github.com/docker/compose/releases/download/v2.20.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
     chmod +x /usr/local/bin/docker-compose
 
+# Install Visual Studio Code (VS Code)
+RUN curl -sSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /usr/share/keyrings/microsoft-archive-keyring.gpg && \
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main" | tee /etc/apt/sources.list.d/vscode.list && \
+    apt-get update && \
+    apt-get install -y code
+
 # Install NestJS CLI
 RUN npm install -g @nestjs/cli
+
+# Clean up the apt cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /workspace
+
+# Expose VS Code Server port
+EXPOSE 8080
 
 # Set up a non-root user
 ARG USERNAME=devuser
