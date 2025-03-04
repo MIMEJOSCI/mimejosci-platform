@@ -61,15 +61,18 @@ WORKDIR /workspace
 EXPOSE 8080
 
 # Set up a non-root user
-ARG USERNAME=devuser
 ARG UID=1000
 ARG GID=1000
+ARG USERNAME=devuser
 
-RUN groupadd -g ${GID} ${USERNAME} && \
-    useradd -m -u ${UID} -g ${GID} -s /bin/bash ${USERNAME} && \
+RUN EXISTING_USER=$(getent passwd ${UID} | cut -d: -f1) && \
+    EXISTING_GROUP=$(getent group ${GID} | cut -d: -f1) && \
+    usermod -l ${USERNAME} -d /home/${USERNAME} -m ${EXISTING_USER} && \
+    groupmod -n ${USERNAME} ${EXISTING_GROUP} && \
     usermod -aG sudo ${USERNAME} && \
     echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USERNAME} && \
     chmod 0440 /etc/sudoers.d/${USERNAME}
+
 
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}
