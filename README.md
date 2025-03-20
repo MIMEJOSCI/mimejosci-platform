@@ -28,7 +28,7 @@ mimejosci-platform/ \
 ├── docs/ \
 │   └── README.md (project-specific documentation) \
 ├── .gitignore \
-└── README.md (top-level project overview) \
+└── README.md (top-level project overview)
 
 Directory Breakdown:
 
@@ -38,4 +38,4 @@ shared/: Reserved for shared libraries, utilities, or configurations (e.g., data
 infra/: Designated for infrastructure-as-code files (e.g., AWS CDK or CloudFormation scripts), crucial for a SAAS platform managing tenant-specific resources. It’s empty for now but anticipates future needs. \
 docs/: Stores project documentation, starting with a README specific to detailed guides or notes. \
 .gitignore: Ignores common directories and files (e.g., node_modules/, build/) to keep the repository clean. \
-README.md: A top-level file providing an overview of the project. \
+README.md: A top-level file providing an overview of the project.
