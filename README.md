@@ -1,8 +1,8 @@
-# mimejosci-platform \
-Repo for mimejosci platform \
+# mimejosci-platform
+Repo for mimejosci platform
 
 
-Repo structure: \
+Repo structure:
 
 mimejosci-platform/ \
 ├── services/ \
@@ -30,7 +30,7 @@ mimejosci-platform/ \
 ├── .gitignore \
 └── README.md (top-level project overview) \
 
-Directory Breakdown: \
+Directory Breakdown:
 
 services/: Contains subdirectories for each microservice. Initially, it includes a template/ directory to house the basic Node.js/Express backend code, serving as a starting point or template for future microservices. \
 frontend/: Holds the React frontend application, including its source code, configuration files, and Dockerfile. \
